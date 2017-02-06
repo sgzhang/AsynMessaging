@@ -1,0 +1,46 @@
+CPU: Intel Sandy Bridge microarchitecture, speed 2493.98 MHz (estimated)
+Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+CPU_CLK_UNHALT...|
+  samples|      %|
+------------------
+   744903 100.000 java
+	CPU_CLK_UNHALT...|
+	  samples|      %|
+	------------------
+	   543386 72.9472 23893.jo
+	   155330 20.8524 vmlinux
+	    21154  2.8398 libpthread-2.12.so
+	    14256  1.9138 libjvm.so
+	     5901  0.7922 libnio.so
+	     1066  0.1431 nf_conntrack
+	      995  0.1336 igb
+	      661  0.0887 ip_tables
+	      647  0.0869 bridge
+	      606  0.0814 libc-2.12.so
+	      121  0.0162 nf_nat
+	      104  0.0140 nf_conntrack_ipv4
+	       94  0.0126 iptable_nat
+	       93  0.0125 ebtables
+	       67  0.0090 libzip.so
+	       54  0.0072 iptable_mangle
+	       51  0.0068 ext4
+	       46  0.0062 ebtable_nat
+	       43  0.0058 ld-2.12.so
+	       42  0.0056 librt-2.12.so
+	       36  0.0048 [vdso] (tgid:23893 range:0x7ffdfc513000-0x7ffdfc513fff)
+	       34  0.0046 libjava.so
+	       24  0.0032 jbd2
+	       20  0.0027 nf_defrag_ipv4
+	       17  0.0023 iptable_filter
+	       14  0.0019 libjvmti_oprofile.so.0.0.0
+	       13  0.0017 libopagent.so.1.0.1
+	        6 8.1e-04 libnet.so
+	        5 6.7e-04 ipv6
+	        4 5.4e-04 e1000e
+	        3 4.0e-04 dm_mod
+	        2 2.7e-04 megaraid_sas
+	        2 2.7e-04 sd_mod
+	        2 2.7e-04 libverify.so
+	        2 2.7e-04 libjli.so
+	        1 1.3e-04 nf_conntrack_ipv6
+	        1 1.3e-04 libdl-2.12.so

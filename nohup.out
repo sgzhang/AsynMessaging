@@ -1,0 +1,5 @@
+operf: Profiler started
+-- bio server is listening port 9000 (thread-pool is 100)
+profiled app exited with the following status: 130
+
+Profiling done.
