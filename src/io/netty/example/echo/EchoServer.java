@@ -62,8 +62,8 @@ public final class EchoServer {
     	}
   
         // Configure the server.
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup(poolSize);
+		EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+		EventLoopGroup workerGroup = new NioEventLoopGroup(poolSize);
 		
 	//	EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
 	//	EventLoopGroup workerGroup = new EpollEventLoopGroup(poolSize);
@@ -73,12 +73,12 @@ public final class EchoServer {
 			//b.childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, new WriteBufferWaterMark(100, 200));
 			b.childOption(ChannelOption.SO_SNDBUF, 1024*Integer.parseInt(args[3]));
 			b.option(ChannelOption.SO_SNDBUF, 1024*Integer.parseInt(args[3]));
-			b.childOption(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(64));
+			b.childOption(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(100));
 			//b.childOption(ChannelOption.TCP_NODELAY, true); 
 			b.group(bossGroup, workerGroup)
 		//	b.group(bossGroup, bossGroup)
-             .channel(NioServerSocketChannel.class)
-        //   .channel(EpollServerSocketChannel.class)
+			.channel(NioServerSocketChannel.class)
+       //    .channel(EpollServerSocketChannel.class)
 //             .option(ChannelOption.SO_BACKLOG, 100)
             // .option(ChannelOption.SO_SNDBUF, 1024*Integer.parseInt(args[3]))
             // .option(ChannelOption.SO_RCVBUF, 1024)
@@ -105,6 +105,7 @@ public final class EchoServer {
 
             // Start the server.
             ChannelFuture f = b.bind("192.168.10.3", PORT).sync();
+           // ChannelFuture f = b.bind("localhost", PORT).sync();
             
             /**
              * @author sgzhang

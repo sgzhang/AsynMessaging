@@ -39,12 +39,20 @@ public class Reactor implements Runnable {
 //				long before = System.currentTimeMillis();
                 selector.select();
 //				System.out.println("select count ["+(count++)+"]");
-//				long after = System.currentTimeMillis();
+				long after = System.currentTimeMillis();
 //				System.out.println("select ["+(after-before)+"]");
                 Set<SelectionKey> selected = selector.selectedKeys();
                 Iterator<SelectionKey> it = selected.iterator();
                 while (it.hasNext()) {
 					SelectionKey k = (SelectionKey) it.next();
+				
+					if (k.interestOps() == SelectionKey.OP_ACCEPT)
+						System.out.println("accept");
+
+					// application request log
+					if (k.interestOps() == SelectionKey.OP_READ && k.attachment() instanceof Handler)
+						((Handler) k.attachment()).setSelectTimestamp(after);
+
                     dispatch(k);
 //					if (k.isReadable())
 //						System.out.println("readable ["+k.isReadable()+"]");

@@ -25,7 +25,8 @@ public class TinyServer implements Runnable {
 		this.sndbuf = sndbuf;
 		serverSocket = new ServerSocket(address.getPort());
 	//	executorService = Executors.newFixedThreadPool(20);
-		executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+	
+//		executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
 //		System.out.println("Server listening to port: "+address.getPort());
 	}
 
@@ -41,8 +42,8 @@ public class TinyServer implements Runnable {
 		while(!Thread.interrupted()) {
 			try {
 				Socket socket = serverSocket.accept();
-				executorService.submit(new Handler(socket));
-//				new Thread(new Handler(socket)).start();				
+			//	executorService.submit(new Handler(socket));
+				new Thread(new Handler(socket)).start();				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -75,9 +76,9 @@ public class TinyServer implements Runnable {
 		      long start = System.currentTimeMillis();
 		      String clientName;
 	    	  while((clientName=in.readLine())!=null) {			 
-//	    		  System.out.println("Saying Hello to " + clientName);
+	    		//  System.out.println(Thread.currentThread().getName());
 				  
-				  int size = 600;
+				  int size = 100;
 				  int[] array = c.insertionSort(c.randomizeArray(size));
 
 				  String outStr = c.getString(c.LENGTH/2);

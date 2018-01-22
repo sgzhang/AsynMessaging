@@ -7,6 +7,7 @@
 #!/bin/bash
 BIN_PATH=$(pwd)"/bin"
 JAR_PATH=$(pwd)"/lib"
+#JAVA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=1098"
 #JAVA_OPTS="-agentpath:/home/szhang/jprofiler9/bin/linux-x64/libjprofilerti.so=port=8849 $JAVA_OPTS"
 if [[ $4 == "debug" ]];
 then
@@ -30,7 +31,7 @@ then
 	then
 		./compile.sh &&sudo operf --events=CPU_CLK_UNHALTED:100000 -k /usr/lib/debug/lib/modules/2.6.32-358.123.2.openstack.el6.x86_64/vmlinux /home/szhang/jdk1.8.0_91/bin/java $JAVA_OPTS -Xmx2048m -Xms1024m -classpath $BIN_PATH:$JAR_PATH -cp $BIN_PATH Test $1 $2 $3 $5
 	else
-		./compile.sh && java $JAVA_OPTS -Xmx2048m -Xms1024m -classpath $BIN_PATH:$JAR_PATH -cp $BIN_PATH Test $1 $2 $3 $5
+		./compile.sh && java $JAVA_OPTS -Xmx8196m -Xms2048m -classpath $BIN_PATH:$JAR_PATH -cp $BIN_PATH:lib/* Test $1 $2 $3 $5
 	fi
 elif [[ $1 == "nio2" ]];
 then
@@ -49,7 +50,8 @@ then
 	#./compile.sh && java -Xmx2048m -Xms1024m -classpath $BIN_PATH:$JAR_PATH -cp $BIN_PATH:lib/*:netty-parent_one.jar io.netty.example.echo.EchoServer $1 $2 $3 $5
 	
 	# mixed version
-	./compile.sh && java -Xmx2048m -Xms1024m -cp libs/*:netty-parent_mixed100.jar io.netty.example.echo.EchoServer $1 $2 $3 $5 $6
+	#./compile.sh && java -Xmx2048m -Xms1024m -cp libs/*:netty-parent_mixed100.jar io.netty.example.echo.EchoServer $1 $2 $3 $5 $6
+	./compile.sh && java -Xmx2048m -Xms1024m -cp libs/*:netty-parent-computex.jar io.netty.example.echo.EchoServer $1 $2 $3 $5 $6 100 100
 else
 	exit 0
 fi

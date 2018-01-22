@@ -3,12 +3,18 @@ package io.netty.example.utils;
 import java.util.*;
 
 public class Count {
-	public final static int LENGTH = 102400;
-	public final static int RATIO = 100;
+	public final static int LENGTH = 100;
+	public final static int RATIO = 0;
 
 	/** large response size and small response size length */
 	public final static int LARGE_LENGTH = 102400;
 	public final static int SMALL_LENGTH = 100;
+	
+	public final static String strL = getString(LARGE_LENGTH);
+	public final static String strS = getString(SMALL_LENGTH);
+
+	public static final byte[] largeStr = (getString(LARGE_LENGTH)+"\n").getBytes();
+	public static final byte[] smallStr = (getString(SMALL_LENGTH)+"\n").getBytes();
 
 	private static long count = 0;
 	public static synchronized void increment() {

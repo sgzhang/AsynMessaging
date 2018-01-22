@@ -3,13 +3,19 @@ package com.sgzhang.util;
 import java.util.*;
 
 public class Count {
-	public final static int LENGTH = 102400;
-	public final static int RATIO = 100;
+	public final static int LENGTH = 100;
+	public final static int RATIO = 0;
 
 	/** large response size and small response size length */
 	public final static int LARGE_LENGTH = 102400;
 	public final static int SMALL_LENGTH = 100;
 	
+	public final static String strL = getString(LARGE_LENGTH);
+	public final static String strS = getString(SMALL_LENGTH);
+
+	public static final byte[] largeStr = (getString(LARGE_LENGTH)+"\n").getBytes();
+	public static final byte[] smallStr = (getString(SMALL_LENGTH)+"\n").getBytes();
+
 	private static long count = 0;
 	public static synchronized void increment() {
 		count++;
@@ -48,7 +54,7 @@ public class Count {
 		return array;
 	}
 
-	public static synchronized void sort(int n) {
+	public static void sort(int n) {
 		int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
 				  11,12,13,14,15,16,17,18,19,10};
 		for (int i = 0; i < n; i++) {

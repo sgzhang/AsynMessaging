@@ -48,9 +48,8 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 //    		System.out.println(in+"::["+(count++)+"]");
     		// System.out.println(ctx.channel().id());
     	
-			int size = 100;
-			int[] array = Count.insertionSort(Count.randomizeArray(size));
-			
+		//	int size = 800;
+		//	int[] array = Count.insertionSort(Count.randomizeArray(size));
 //			/** write a file to disk */
 //			String f = "io/"+ctx.channel().id()+".txt";
 //			try {
@@ -87,21 +86,38 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
 			/** baseline */
 	   		if (!inString.equals("")) {
-				//System.out.println(in);
-				String outStr = Count.getString(Count.LENGTH);
+			//	//System.out.println(in);
+			//	int size = 100;
+			//	int[] array = Count.insertionSort(Count.randomizeArray(size));
+
+			//	String outStr = Count.getString(Count.LENGTH);
 			//	outStr += outStr;
-				String str = array[0]+outStr+"\n";
-	    		ByteBuf out = io.netty.buffer.Unpooled.wrappedBuffer((str).getBytes());
+			//	String str = array[0]+outStr+"\n";
+			//	ByteBuf out = io.netty.buffer.Unpooled.wrappedBuffer((str).getBytes());
 
 				/** mixed response size */
-			//	ByteBuf out = null;
-			//	if (random.nextInt(100) < Count.RATIO) {
-			//		out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+Count.getString(Count.LARGE_LENGTH)+"\n").getBytes());
+				ByteBuf out = null;
+				if (random.nextInt(100) < Count.RATIO) {
+					int size = 100;
+					int[] array = Count.insertionSort(Count.randomizeArray(size));
+
+					String str = Count.getString(Count.LARGE_LENGTH);
+				//	for (int i = 0; i < 10; i++) 
+				//		str += str;
+					out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+str+"\n").getBytes());
+				//	out = io.netty.buffer.Unpooled.wrappedBuffer(Count.largeStr);
+				//	out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+Count.strL+"\n").getBytes());
 				//	out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+largeStr+"\n").getBytes());
-			//	} else {
-			//		out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+Count.getString(Count.SMALL_LENGTH)+"\n").getBytes());
+				} else {
+					int size = 100;
+					int[] array = Count.insertionSort(Count.randomizeArray(size));
+
+					String str = Count.getString(Count.SMALL_LENGTH);
+					out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+str+"\n").getBytes());
+				//	out = io.netty.buffer.Unpooled.wrappedBuffer(Count.smallStr);
+				//	out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+Count.strS+"\n").getBytes());
 				//	out = io.netty.buffer.Unpooled.wrappedBuffer((array[0]+smallStr+"\n").getBytes());
-			//	}
+				}
 
 				//Count.increment();
 				//System.out.println(Count.getCount());
@@ -117,7 +133,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 //				ctx.write(out);
 //    		}
     	} finally {
-//    		ReferenceCountUtil.release(msg);
+    		ReferenceCountUtil.release(msg);
     	}
     }
 
