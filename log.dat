@@ -1,6 +1,0 @@
-8192
-8192
-hybrid netty server starts listening [9000] with worker threads [2]
-	compute  size  -> 100
-	workload ratio -> 2
-	large   length -> 102400
